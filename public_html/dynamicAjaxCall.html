@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ajax Call</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            table {
+                
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 15px;
+            }
+        </style>
+    </head>
+    <body>
+
+        Qualification :<select id="qualification" onchange="CreateTableFromJSON(this.value)">
+            <option hidden selected disabled>Choose Qualification</option>
+            <option value="https://jsonplaceholder.typicode.com/posts">posts</option>
+            <option value="https://jsonplaceholder.typicode.com/comments">comments</option>
+            <option value="https://jsonplaceholder.typicode.com/albums">albums</option>
+            <option value="https://jsonplaceholder.typicode.com/photos">photos</option>  
+            <option value="https://jsonplaceholder.typicode.com/todos">todos</option>  
+            <option value="https://jsonplaceholder.typicode.com/users">users</option>  
+        </select><br><br>
+        <table id= "tabId" >
+        </table>
+
+        <script>
+           
+            function CreateTableFromJSON(url_link) {
+                var xhttp = new XMLHttpRequest();
+                  // alert("hii")
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        showTable(this.responseText);
+                    }
+                };
+                xhttp.open("GET", url_link, true);
+                xhttp.send();
+            }
+            function showTable(json) {
+                
+                var obj = JSON.parse(json);               
+                var tab =document.getElementById("tabId");
+                var size = 0;        
+                    //alert(tab)
+                for (var i = 0; i<=obj.length; i++) {
+                    var tr = document.createElement("tr");
+                    for (var key in obj[i]) {
+                        //alert("2nd fro loop")
+                        if (obj[i].hasOwnProperty(key) && i == 0) {
+                            var th1 = document.createElement("th");
+                           //  var key = Object.keys(obj[i])[size];
+                            var title = document.createTextNode(key);
+                            th1.appendChild(title);
+                            tr.appendChild(th1);
+                              size++;
+                        } else if (obj[i].hasOwnProperty(key)) {
+                            var td1 = document.createElement("td");
+                           //  var tdkey = Object.keys(obj[i])[size];
+                            var tdval = obj[i][key];
+                            var tdtext = document.createTextNode(tdval);
+                            td1.appendChild(tdtext);
+                            tr.appendChild(td1);
+                             ////alert("Bye")
+                             size++;
+                             
+                        }
+                    }
+                     size = 0;
+                //  alert("bye")
+                    tab.appendChild(tr);
+                }
+               
+            }
+
+        </script>
+
+    </body>
+</html>

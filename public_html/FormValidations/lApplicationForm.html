@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Form With Validations</title>
+        <link rel="stylesheet" href="formStyles.css">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    </head>
+
+    <body>
+        <div class="container">
+            <div id="left">
+                <form id="myForm" name="uesrLogin" class="bg-light" action=""  onsubmit="return validateAll()">
+                    <h3 class="text-center text-success">APPLICATION FORM</h3>
+                    <button type="button" class="btn btn-success" id="showButton" onclick="tableCreation()" >Show</button>
+                    <div class="form-group">
+                        <label>First Name<span style="color:red"> *</span> :</label>
+                        <input type="text" onkeyup="fNameValidation()" id="fname" name="fName" class="form-control" autocomplete="off"
+                               placeholder="First name required" />
+                        <span id="fNameErroCheck" class="text-danger font-weight-bold"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name<span style="color:red"> *</span> :</label>
+                        <input type="text" onkeyup="lNameValidation()" id="lname" name="lName" class="form-control" autocomplete="off"
+                               placeholder="Last name required"  />
+                        <span id="lNameErroCheck" class="text-danger font-weight-bold"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Date of birth(DD/MM/YY(or)YYYY)<span style="color:red"> *</span> :</label>
+                        <input type="text" onkeyup="validateDob()" id="dob1" name="dob" class="form-control" autocomplete="off"
+                               placeholder="Date of birth (DD/MM/YYYY)"  />
+                        <span id="dobErroCheck" class="text-danger font-weight-bold"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Employee ID<span style="color:red"> *</span> :</label>
+                        <input type="text" onkeyup="validEmpId()" id="empid" name="empId" class="form-control" autocomplete="off"
+                               placeholder="Employee ID required" />
+                        <span id="empIdErroCheck" class="text-danger font-weight-bold"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Telephone<span style="color:red"> *</span> :</label>
+                        <input type="text" onkeyup="validatePhone()" id="phone1" name="phone" class="form-control" autocomplete="off"
+                               placeholder="Telephone required"  />
+                        <span id="phNoErroCheck" class="text-danger font-weight-bold"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Email<span style="color:red"> *</span> :</label>
+                        <input type="text" onkeyup="validateGmail()" id="gmail1" name="gmail" class="form-control" autocomplete="off"
+                               placeholder="Email required" />
+                        <span id="emailErroCheck" class="text-danger font-weight-bold"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Address<span style="color:red"> *</span> :</label>
+                        <input type="text" onkeyup="validateAddress()" id="address1" name="address" class="form-control" autocomplete="off"
+                               placeholder="Address required"/>
+                        <span id="addressErroCheck" class="text-danger font-weight-bold"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-success" id="addButton">Add</button>
+                </form>
+            </div>
+        </div>
+        <div id="print">
+            <table id="tabId" ></table>
+        </div>
+
+        <script type="text/javascript" src="javascriptFormValidation.js">
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>Iframe task</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form>
+            Enter Name : <input type="text" id="nam" placeholder="EnterName" onkeyup="myfunction()"><br><br>
+            Enter Pass : <input type="password" id="pa" placeholder="password" onkeyup="password()"><br><br>
+            Gender : <input id="male" type="radio" name="gender" value="male">male &nbsp;&nbsp;
+            <input id="female" type="radio" name="gender" value="female">female <br><br>
+
+            Intrests : <input type="checkbox" name="games" value="cricket">cricket &nbsp;
+            <input type="checkbox" name="games" value="chess">chess &nbsp;
+            <input type="checkbox" name="games" value="reading">reading &nbsp;
+            <input type="checkbox" name="games" value="movies">movies &nbsp;
+            <input type="button" onclick='printChecked()' value="Print Selected Items"/><br><br>
+
+
+
+            Qualification : <select id="qualifi" >
+                <option hidden selected disabled>Choose Qualification</option>
+                <option value="B.tech">B.Tech</option>
+                <option value="B.E">B.E</option>
+                <option value="M.tech">M.Tech</option>
+                <option value="M.Sc">M.Sc</option>     
+            </select><br><br>
+            Likedcars : <select multiple="multiple" id="likes">
+                <option value="volvo">volvo</option>
+                <option value="bemtz">benz</option>
+                <option value="BMW">BMW</option>
+                <option value="ferari">ferari</option>     
+            </select>
+
+        </form>  
+        <script>
+            var right = parent.document.getElementById("rframe").contentWindow.document;
+            function myfunction() {
+                right.getElementById("name").innerHTML = "Name : " + document.getElementById("nam").value;
+            }
+            function password() {
+                right.getElementById("pass").innerHTML = "Password : " + document.getElementById("pa").value;
+            }
+            //It is for multiple select boxes    
+            document.getElementById("female").addEventListener("click", Gender);
+            document.getElementById("male").addEventListener("click", Gender);
+            function Gender(e) {
+                right.getElementById("gend").innerHTML = "Gender : " + e.target.value;
+            }
+            document.getElementById("qualifi").addEventListener("change", qualification);
+            function qualification(e) {
+                right.getElementById("qual").innerHTML = "Qualification : " + e.target.value;
+            }
+            //It is for multiple check boxes    
+            function printChecked() {
+                var items = document.getElementsByName('games');
+                var selectedItems = "";
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].type === 'checkbox' && items[i].checked === true) {
+                        selectedItems = selectedItems + items[i].value + "    ";
+                    }
+                }
+                right.getElementById("game").innerHTML = "Intrests : " + selectedItems;
+            }
+            //It is for multiple select boxes
+            document.getElementById("likes").addEventListener("click", likedCares);
+            var arr = [];
+            function likedCares(e) {
+                if (e.target.selected)
+                    arr.push(e.target.value);
+                else
+                    arr.pop(e.target.value);
+                right.getElementById("likre").innerHTML = "Intrests : " + arr;
+            }
+        </script>
+
+
+    </body>
+</html>

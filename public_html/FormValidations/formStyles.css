@@ -1,0 +1,17 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+#addButton{
+    width: -moz-available;
+    border-radius: 20px;
+}
+#showButton{
+    margin-left: 420px;
+    border-radius: 20px;
+}
+

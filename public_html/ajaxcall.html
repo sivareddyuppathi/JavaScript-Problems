@@ -1,0 +1,51 @@
+
+<html>
+    <head>
+        <title>Ajax Call</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        
+         <button type="button" onclick="CreateTableFromJSON()">CreateTableFromJSON</button>
+        <table id= "demo" >
+        </table>
+                        
+<script>                  
+            function CreateTableFromJSON() {
+                
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function () {
+
+                    if (this.readyState === 4 && this.status === 200) {
+                        var obj = JSON.parse(this.responseText);
+                        var str = "<table><tr><th>ID</th><th>Name</th><th>Email</th></tr></table>";
+                        for (var i = 0; i < obj.length; i++) {
+                            str += "<table><tr><td>" + obj[i].id + "</td><td>" + obj[i].name + "</td><td>" + obj[i].email + "</td></tr></table>";
+                        }
+                        document.getElementById("demo").innerHTML = str;
+                       
+                    }
+                };
+                xhttp.open("GET", "./JSONfiles/users.json", true);
+                xhttp.send();
+            }
+
+        </script>
+
+    </body>
+</html>
